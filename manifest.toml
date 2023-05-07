@@ -59,7 +59,7 @@ ram.runtime = "50M"
     main.default = 5055
    
     [resources.apt]
-    packages = "yarn, mariadb-server"
+    packages = "mariadb-server"
 
     [resources.database]
     type = "mysql"
