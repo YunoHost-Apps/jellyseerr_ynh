@@ -48,6 +48,8 @@ ynh_script_progression --message="Building app..." --weight=10
 
 ynh_use_nodejs
 
+cd $install_dir
+
 yarn install
 yarn run build
 yarn start
