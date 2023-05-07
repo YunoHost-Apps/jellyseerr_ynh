@@ -15,6 +15,7 @@ source /usr/share/yunohost/helpers
 ynh_script_progression --message="Installing dependencies..." --weight=10
 
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_exec_warn_less npm install --global yarn
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -49,9 +50,9 @@ ynh_use_nodejs
 
 cd $install_dir
 
-npm install
-npm run build
-npm start
+yarn install --network-timeout=30000
+yarn run build
+yarn start
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
