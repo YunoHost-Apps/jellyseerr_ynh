@@ -41,21 +41,9 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        format = "docker"
-        extract = true
-        prefetch = false
-
-        amd64.url = "fallenbagel/jellyseerr:1.5.0"
-        amd64.platform = "linux/amd64"
-        amd64.sha256 = "3ff0d7af326f4e6db4dbe8679284a4230c9fd4205f59ecc9637ecfbdedb473c3"
-
-        arm64.url = "fallenbagel/jellyseerr:1.5.0"
-        arm64.platform = "linux/arm64"
-        arm64.sha256 = "e1d0c43780be6e2cfa5b98c2385914e7c5931be1cd7e20b2ff0b88a558e644ea"
-
-        armhf.url = "fallenbagel/jellyseerr:1.5.0"
-        armhf.platform = "linux/armhf"
-        armhf.sha256 = "71142a38c3133e82b18a6dbc5fbba4752ec7a56b9204f47c23b8ef6a7c2a3921"
+        url = "https://github.com/Fallenbagel/jellyseerr/archive/refs/tags/v1.5.0.tar.gz"
+        sha256 = "0bcfb5a73fff85a1ca4b521e33bc36263ba40be71144efcac140079a3fe14f80"
+        autoupdate.strategy = "latest_github_tag"
 
 
     [resources.system_user]
@@ -71,7 +59,7 @@ ram.runtime = "50M"
     main.default = 5055
    
     [resources.apt]
-    packages = "mariadb-server"
+    packages = "yarn, mariadb-server"
 
     [resources.database]
     type = "mysql"

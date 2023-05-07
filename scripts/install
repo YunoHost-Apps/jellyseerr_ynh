@@ -16,17 +16,18 @@ ynh_script_progression --message="Installing dependencies..." --weight=10
 
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..."
+ynh_script_progression --message="Setting up source files..." --weight=1
 
 # Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$install_dir"
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+
 
 #=================================================
 # NGINX CONFIGURATION
@@ -39,20 +40,16 @@ ynh_add_nginx_config
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# MAKE INSTALL
 #=================================================
-ynh_script_progression --message="Making install..."
+# BUILD APP
+#=================================================
+ynh_script_progression --message="Building app..." --weight=10
 
 ynh_use_nodejs
 
-ynh_setup_source --dest_dir="$install_dir/"
-
-ls -lah "$install_dir/"
-ls -lah "$install_dir/build/"
-ls -lah "$install_dir/build/opt/"
-
-rsync -a "$install_dir/build/opt/jellyseer/" "$install_dir/"
-ynh_secure_remove --file="$install_dir/build"
+yarn install
+yarn run build
+yarn start
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
