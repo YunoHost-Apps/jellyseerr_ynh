@@ -1,7 +1,7 @@
 packaging_format = 2
 
-id = "jellyseer"
-name = "Jellyseer"
+id = "jellyseerr"
+name = "Jellyseerr"
 description.en = "Manage requests for your media library"
 description.fr = "Gère les requêtes pour votre bibilothèque multimedia"
 
