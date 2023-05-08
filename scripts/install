@@ -49,9 +49,9 @@ ynh_script_progression --message="Building app..." --weight=10
 ynh_use_nodejs
 
 pushd $install_dir
-yarn install --network-timeout=30000
-yarn run build
-yarn start
+ynh_exec_warn_less yarn install --network-timeout=30000
+ynh_exec_warn_less yarn run build
+ynh_exec_warn_less yarn start
 popd
 
 chmod 750 "$install_dir"
