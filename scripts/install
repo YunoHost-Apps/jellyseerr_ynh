@@ -51,7 +51,7 @@ ynh_use_nodejs
 pushd $install_dir
 ynh_exec_warn_less yarn install --network-timeout=30000
 ynh_exec_warn_less yarn run build
-ynh_exec_warn_less yarn start
+#ynh_exec_warn_less yarn start
 popd
 
 chmod 750 "$install_dir"
