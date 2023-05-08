@@ -48,11 +48,11 @@ ynh_script_progression --message="Building app..." --weight=10
 
 ynh_use_nodejs
 
-cd $install_dir
-
+pushd $install_dir
 yarn install --network-timeout=30000
 yarn run build
 yarn start
+popd
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
