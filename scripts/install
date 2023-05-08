@@ -59,15 +59,6 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:$app "$install_dir"
 
 #=================================================
-# CREATE DATA DIRECTORY
-#=================================================
-ynh_script_progression --message="Creating a data directory..."
-
-chmod 750 "$data_dir"
-chmod -R o-rwx "$data_dir"
-chown -R $app:www-data "$data_dir"
-
-#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding a configuration file..."
