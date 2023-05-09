@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "jellyseerr"
 name = "Jellyseerr"
-description.en = "Manage requests for your media library"
-description.fr = "Gère les requêtes pour votre bibilothèque multimedia"
+description.en = "Media request management and discovery tool for Jellyfin, Radarr, and Sonarr"
+description.fr = "Outil de gestion de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
 
 version = "1.5.0~ynh1"
 
