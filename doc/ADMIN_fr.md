@@ -1,3 +1,3 @@
-Ceci est une fausse doc d'admin pour cette app
+Connectez-vous avec vos coordonnées identifiants.
 
-Le dossier d'install de l'app est `__INSTALL_DIR__`
+Le premier utilisateur connecté sera l’administrateur. Il déterminera l’instance Jellyfin liée.
