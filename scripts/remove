@@ -51,6 +51,13 @@ ynh_script_progression --message="Removing various files..." --weight=1
 # Remove the log files
 ynh_secure_remove --file="/var/log/$app"
 
+#=================================================
+# REMOVE SERVICE IN YUNOHOST
+#=================================================
+ynh_script_progression --message="Integrating service in YunoHost..."
+
+yunohost service remove $app --log="/var/log/$app/$app.log"
+
 
 #=================================================
 # END OF SCRIPT
