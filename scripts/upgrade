@@ -35,7 +35,7 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 # BUILD APP
 #=================================================
-ynh_script_progression --message="Building app..." --weight=30
+ynh_script_progression --message="Building app... This may take quiete some time" --weight=30
 
 pushd $install_dir
     ynh_use_nodejs
