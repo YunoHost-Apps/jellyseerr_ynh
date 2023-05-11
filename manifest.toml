@@ -10,7 +10,6 @@ version = "1.5.0~ynh1"
 maintainers = ["Thovi98"]
 
 [upstream]
-# NB: Only the "license" key is mandatory. Remove entries for which there's no relevant data
 license = "MIT"
 code = "https://github.com/Fallenbagel/jellyseerr"
 
@@ -56,7 +55,5 @@ ram.runtime = "50M"
     main.default = 5055
    
     [resources.apt]
-    packages = "mariadb-server"
 
     [resources.database]
-    type = "mysql"

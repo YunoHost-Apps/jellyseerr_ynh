@@ -46,13 +46,16 @@ ynh_add_nginx_config
 #=================================================
 # BUILD APP
 #=================================================
-ynh_script_progression --message="Building app... This may take quiete some time" --weight=30
 
 pushd $install_dir
     ynh_use_nodejs
+
+	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=30000
+
+	ynh_script_progression --message="Building Yarn dev dependencies... This can be very long, be patient !" --weight=25
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn run build
-#ynh_exec_warn_less yarn start
+
 popd
 
 chmod 750 "$install_dir"
@@ -103,8 +106,6 @@ ynh_script_progression --message="Starting a systemd service..."
 
 # Start a systemd service
 ynh_exec_warn_less ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log" --line_match="Starting Overseer version"
-
-
 
 
 #=================================================
