@@ -57,3 +57,4 @@ ram.runtime = "50M"
     [resources.apt]
 
     [resources.database]
+    type = "mysql"
