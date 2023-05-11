@@ -25,6 +25,7 @@ ynh_npm install --global yarn
 #=================================================
 ynh_script_progression --message="Restoring the app main directory..." --weight=1
 
+ynh_use_nodejs
 ynh_restore_file --origin_path="$install_dir"
 
 # $install_dir will automatically be initialized with some decent 
