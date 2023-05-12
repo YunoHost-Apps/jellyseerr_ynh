@@ -35,13 +35,17 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 # BUILD APP
 #=================================================
-ynh_script_progression --message="Building app..." --weight=30
+ynh_script_progression --message="Building app... This may take quiete some time" --weight=30
 
 pushd $install_dir
     ynh_use_nodejs
+
+	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=30000
+
+	ynh_script_progression --message="Building Yarn dev dependencies... This can be very long, be patient !" --weight=25
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn run build
-#ynh_exec_warn_less yarn start
+
 popd
 
 chmod 750 "$install_dir"
@@ -59,12 +63,14 @@ ynh_add_systemd_config
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-# SETUP LOGROTATE
+# LOGROTATE
 #=================================================
-ynh_script_progression --message="Configuring log rotation..."
+ynh_script_progression --message="Configuring logrotate to manage application logfiles" --weight=1
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate
+ynh_use_logrotate --specific_user=$app
+touch /var/log/$app/$app.log
+chown -R $app:www-data /var/log/$app/
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
@@ -90,7 +96,7 @@ chown $app:$app "$install_dir/jellyseerr.conf"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
+ynh_exec_warn_less ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log" --line_match="Starting Overseer version"
 
 #=================================================
 # END OF SCRIPT

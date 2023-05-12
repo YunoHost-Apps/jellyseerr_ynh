@@ -1,3 +1,3 @@
-This is a dummy admin doc for this app
+Connect with your Jellyfin credentials.
 
-The app install dir is `__INSTALL_DIR__`
+The first user connected will be the admin user, and will choose the linked Jellyfin instance.
