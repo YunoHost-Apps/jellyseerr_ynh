@@ -22,8 +22,6 @@ ynh_npm install --global npm@latest
 # Install Yarn
 ynh_npm install --global yarn
 
-npm cache clean --force
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -56,7 +54,7 @@ pushd $install_dir
     ynh_use_nodejs
 
 	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=30000
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=30000 --legacy-peer-deps
 
 	# fix issue "Type error: Cannot find module 'pulltorefreshjs' or its corresponding type declarations."
 	ynh_exec_as $app $ynh_node_load_PATH $ynh_npm install pulltorefreshjs@latest
