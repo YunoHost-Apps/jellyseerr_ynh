@@ -19,6 +19,19 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=5
+
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+# Upgrade NPM
+ynh_npm install --global npm@latest
+
+# Install Yarn
+ynh_npm install --global yarn
+
+#=================================================
 # "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -42,6 +55,9 @@ pushd $install_dir
 
 	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=30000
+
+	# fix issue "Type error: Cannot find module 'pulltorefreshjs' or its corresponding type declarations."
+	ynh_exec_as $app $ynh_node_load_PATH $ynh_npm install pulltorefreshjs@latest
 
 	ynh_script_progression --message="Building Yarn dev dependencies... This can be very long, be patient !" --weight=25
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn run build
