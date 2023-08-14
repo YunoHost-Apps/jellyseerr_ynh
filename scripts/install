@@ -16,9 +16,6 @@ ynh_script_progression --message="Installing dependencies..." --weight=5
 
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
-# Upgrade NPM
-ynh_npm install --global npm@latest
-
 # Install Yarn
 ynh_npm install --global yarn
 
