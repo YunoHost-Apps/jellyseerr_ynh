@@ -57,7 +57,7 @@ pushd $install_dir
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=30000
 	
 	# fix issue "Type error: Cannot find module 'pulltorefreshjs' or its corresponding type declarations."
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install pulltorefreshjs
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn add pulltorefreshjs
 
 	ynh_script_progression --message="Building Yarn dev dependencies... This can be very long, be patient !" --weight=25
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn run build
