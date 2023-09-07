@@ -18,7 +18,12 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Jellyseerr is a free and open source software application for managing requests for your media library. It is a a fork of Overseerr built to bring support for Jellyfin & Emby media servers!
 
-**Shipped version:** 1.6.0~yn21
+
+
+**Shipped version:** 1.6.0~ynh2
+
+
+
 
 ## Screenshots
 
