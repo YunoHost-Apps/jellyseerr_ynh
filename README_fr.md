@@ -18,7 +18,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 Jellyseerr est une application libre et open source pour gérer les requêtes pour votre médiathèque. C’est un fork de Overseerr, créé pour ajouter le support des serveurs Jellyfin et Emby !
 
-**Version incluse :** 1.6.0~ynh1
+**Version incluse :** 1.6.0~ynh2
 
 ## Captures d’écran
 
