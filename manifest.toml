@@ -14,7 +14,7 @@ license = "MIT"
 code = "https://github.com/Fallenbagel/jellyseerr"
 
 [integration]
-yunohost = ">= 11.1.18"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
