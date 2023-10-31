@@ -27,7 +27,7 @@ Jellyseerr is a free and open source software application for managing requests 
 ## Documentation and resources
 
 * Upstream app code repository: <https://github.com/Fallenbagel/jellyseerr>
-* YunoHost documentation for this app: <https://yunohost.org/app_jellyseerr>
+* YunoHost Store: <https://apps.yunohost.org/app/jellyseerr>
 * Report a bug: <https://github.com/YunoHost-Apps/jellyseerr_ynh/issues>
 
 ## Developer info

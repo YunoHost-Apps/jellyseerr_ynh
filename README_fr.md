@@ -27,7 +27,7 @@ Jellyseerr est une application libre et open source pour gérer les requêtes po
 ## Documentations et ressources
 
 * Dépôt de code officiel de l’app : <https://github.com/Fallenbagel/jellyseerr>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_jellyseerr>
+* YunoHost Store: <https://apps.yunohost.org/app/jellyseerr>
 * Signaler un bug : <https://github.com/YunoHost-Apps/jellyseerr_ynh/issues>
 
 ## Informations pour les développeurs
