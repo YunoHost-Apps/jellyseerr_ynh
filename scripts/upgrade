@@ -45,7 +45,7 @@ then
 	mv ${install_dir} ${install_dir}.old
 	
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir"
+ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
 # restore data
 	cp -a ${install_dir}.old/config ${install_dir}
