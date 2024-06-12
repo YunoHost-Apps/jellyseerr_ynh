@@ -46,8 +46,6 @@ ynh_script_progression --message="Building app... This may take quiete some time
 
 pushd $install_dir
     ynh_use_nodejs
-    ynh_npm install npm@latest
-    ynh_npm install yarn
 	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=100000
 
