@@ -25,12 +25,6 @@ ynh_script_progression --message="Installing dependencies..." --weight=5
 
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
-# Upgrade NPM
-ynh_npm install --global npm@latest
-
-# Install Yarn
-ynh_npm install --global yarn
-
 #=================================================
 # "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
 #=================================================
@@ -52,7 +46,6 @@ ynh_script_progression --message="Building app... This may take quiete some time
 
 pushd $install_dir
     ynh_use_nodejs
-
 	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=100000
 
