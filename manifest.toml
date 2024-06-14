@@ -7,7 +7,7 @@ name = "Jellyseerr"
 description.en = "Media request management and discovery tool for Jellyfin, Radarr, and Sonarr"
 description.fr = "Outil de gestion de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
 
-version = "1.9.1~ynh1"
+version = "1.9.2~ynh1"
 
 maintainers = ["Thovi98"]
 
@@ -38,8 +38,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/Fallenbagel/jellyseerr/archive/refs/tags/v1.9.1.tar.gz"
-        sha256 = "fec651f015e8aa5727f8cab09e39ced299657625cd34e33e81062c9ed37c67e0"
+        url = "https://github.com/Fallenbagel/jellyseerr/archive/refs/tags/v1.9.2.tar.gz"
+        sha256 = "630feda513c52b78bdfbc0eae300e70dad6a00256028637fbb631fc82744314f"
         autoupdate.strategy = "latest_github_tag"
 
 
