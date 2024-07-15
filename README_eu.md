@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Jellyseerr YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/jellyseerr.svg)](https://dash.yunohost.org/appci/app/jellyseerr) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
 
 [![Instalatu Jellyseerr YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 
@@ -18,7 +18,7 @@ EZ editatu eskuz.
 
 Jellyseerr is a free and open source software application for managing requests for your media library. It is a a fork of Overseerr built to bring support for Jellyfin & Emby media servers!
 
-**Paketatutako bertsioa:** 1.9.2~ynh1
+**Paketatutako bertsioa:** 1.9.2~ynh2
 
 ## Pantaila-argazkiak
 

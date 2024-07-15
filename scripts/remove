@@ -48,7 +48,7 @@ ynh_remove_nodejs
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..."
 
-yunohost service remove $app --log="/var/log/$app/$app.log"
+yunohost service remove $app
 
 #=================================================
 # END OF SCRIPT

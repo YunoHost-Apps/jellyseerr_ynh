@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Jellyseerr
 
-[![集成程度](https://dash.yunohost.org/integration/jellyseerr.svg)](https://dash.yunohost.org/appci/app/jellyseerr) ![工作状态](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
 
 [![使用 YunoHost 安装 Jellyseerr](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 
@@ -18,7 +18,7 @@
 
 Jellyseerr is a free and open source software application for managing requests for your media library. It is a a fork of Overseerr built to bring support for Jellyfin & Emby media servers!
 
-**分发版本：** 1.9.2~ynh1
+**分发版本：** 1.9.2~ynh2
 
 ## 截图
 
