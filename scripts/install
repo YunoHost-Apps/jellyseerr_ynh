@@ -86,7 +86,7 @@ yunohost service add $app --log="/var/log/$app/$app.log"
 ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemctl --service=$app --action="start"  --wait_until="Starting Overseer version"
+ynh_systemctl --service=$app --action="start"  --wait_until="Starting Overseerr version"
 
 #=================================================
 # END OF SCRIPT
