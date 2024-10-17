@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Jellyseerr est une application libre et open source pour gérer les requêtes pour votre médiathèque. C’est un fork de Overseerr, créé pour ajouter le support des serveurs Jellyfin et Emby !
 
-**Version incluse :** 2.0.0~ynh1
+**Version incluse :** 2.0.1~ynh1
 
 ## Captures d’écran
 
