@@ -34,17 +34,14 @@ ynh_config_add_nginx
 #=================================================
 
 pushd $install_dir
-
-    ynh_script_progression "Fetching Yarn dev dependencies... This can be very long, be patient !"
-	ynh_hide_warnings ynh_exec_as_app yarn install --network-timeout=100000
-
-	ynh_script_progression "Building Yarn dev dependencies... This can be very long, be patient !"
-	ynh_hide_warnings ynh_exec_as_app yarn run build
-
-	ynh_script_progression "Cleaning cache... "
-	ynh_hide_warnings ynh_exec_as_app yarn cache clean 2>&1
-
+	export CYPRESS_INSTALL_BINARY=0
+    ynh_hide_warnings corepack enable && corepack prepare pnpm@latest --activate
+    ynh_hide_warnings pnpm i  
+    ynh_hide_warnings pnpm install --frozen-lockfile
+	ynh_hide_warnings pnpm build
 popd
+
+chown -R $app:$app "install_dir"/dist
 
 #=================================================
 # ADD A CONFIGURATION
