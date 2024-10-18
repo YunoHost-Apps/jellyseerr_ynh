@@ -41,7 +41,7 @@ pushd $install_dir
 	ynh_hide_warnings pnpm build
 popd
 
-chown -R $app:$app "install_dir"/dist
+chown -R $app:$app "$install_dir/dist"
 
 #=================================================
 # ADD A CONFIGURATION
