@@ -41,10 +41,6 @@ pushd $install_dir
 	ynh_hide_warnings pnpm build
 popd
 
-ynh_safe_rm "$install_dir/dist"
-ynh_safe_rm "$install_dir/.next"
-ynh_safe_rm "$install_dir/node_modules"
-
 #=================================================
 # SETUP SYSTEMD
 #=================================================
