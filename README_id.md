@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Jellyseerr untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
+![Status kerja](https://apps.yunohost.org/badge/state/jellyseerr)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/jellyseerr)
 
 [![Pasang Jellyseerr dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 

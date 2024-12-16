@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # Jellyseerr for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![Working status](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
+![Working status](https://apps.yunohost.org/badge/state/jellyseerr)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/jellyseerr)
 
 [![Install Jellyseerr with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 

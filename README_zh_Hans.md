@@ -5,7 +5,9 @@
 
 # YunoHost 上的 Jellyseerr
 
-[![集成程度](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
+![工作状态](https://apps.yunohost.org/badge/state/jellyseerr)
+![维护状态](https://apps.yunohost.org/badge/maintained/jellyseerr)
 
 [![使用 YunoHost 安装 Jellyseerr](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 

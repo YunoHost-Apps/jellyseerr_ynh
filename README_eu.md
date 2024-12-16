@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Jellyseerr YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/jellyseerr)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/jellyseerr)
 
 [![Instalatu Jellyseerr YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 
