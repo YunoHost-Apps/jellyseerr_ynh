@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # Jellyseerr pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/jellyseerr.svg)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/jellyseerr.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/jellyseerr.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/jellyseerr)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/jellyseerr)
 
 [![Installer Jellyseerr avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=jellyseerr)
 
@@ -18,7 +20,7 @@ Il NE doit PAS être modifié à la main.
 
 Jellyseerr est une application libre et open source pour gérer les requêtes pour votre médiathèque. C’est un fork de Overseerr, créé pour ajouter le support des serveurs Jellyfin et Emby !
 
-**Version incluse :** 2.1.0~ynh1
+**Version incluse :** 2.1.0~ynh2
 
 ## Captures d’écran
 
