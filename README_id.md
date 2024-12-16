@@ -20,7 +20,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 Jellyseerr is a free and open source software application for managing requests for your media library. It is a a fork of Overseerr built to bring support for Jellyfin & Emby media servers!
 
-**Versi terkirim:** 2.1.0~ynh1
+**Versi terkirim:** 2.1.0~ynh2
 
 ## Tangkapan Layar
 
