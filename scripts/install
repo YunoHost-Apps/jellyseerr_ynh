@@ -41,7 +41,9 @@ pushd $install_dir
     ynh_hide_warnings pnpm install --frozen-lockfile
 	ynh_hide_warnings pnpm build
     ynh_hide_warnings pnpm prune --prod --ignore-scripts
-    ynh_safe_rm src server .next/cache
+    ynh_safe_rm src
+    ynh_safe_rm server
+    ynh_safe_rm .next/cache
 popd
 
 chown -R $app:$app "$install_dir"
