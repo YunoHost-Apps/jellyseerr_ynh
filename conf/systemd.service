@@ -1,5 +1,5 @@
 [Unit]
-Description=Jellyseer Service
+Description=Jellyseerr Service
 Wants=network-online.target
 After=network-online.target
 

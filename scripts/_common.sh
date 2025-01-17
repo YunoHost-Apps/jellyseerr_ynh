@@ -5,4 +5,4 @@
 #=================================================
 
 # nodejs version
-nodejs_version=20
+nodejs_version=22
