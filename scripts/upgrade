@@ -22,7 +22,7 @@ ynh_script_progression "Ensuring downward compatibility..."
 ynh_print_info "Adding an API_KEY if not set..."
 
 ynh_app_setting_set_default --app=$app --key="api_key" --value="$(ynh_string_random --length=32)"
-api_key=$(ynh_app_setting_get --app=$app --key=api_key)
+
 
 #=================================================
 # INSTALL DEPENDENCIES
