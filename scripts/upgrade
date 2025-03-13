@@ -19,6 +19,11 @@ ynh_systemctl --service="$app" --action="stop"
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
 
+if [ -z "$(ynh_app_setting_get --app=$app --key=api_key)" ]; then
+	api_key=$(ynh_string_random --length=32)
+	ynh_app_setting_set --app=$app --key="api_key" --value="$api_key"
+fi
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
