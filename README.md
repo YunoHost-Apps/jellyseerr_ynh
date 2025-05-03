@@ -4,13 +4,13 @@ It shall NOT be edited by hand.
 -->
 
 <h1>
-  <img src="https://raw.githubusercontent.com/YunoHost/apps/master/logos/jellyseerr.png" width="32px" alt="Logo of Jellyseerr">
+  <img src="https://raw.githubusercontent.com/YunoHost/apps/main/logos/jellyseerr.png" width="32px" alt="Logo of Jellyseerr">
   Jellyseerr, packaged for YunoHost
 </h1>
 
 Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
 
-![Version: 2.5.2~ynh1](https://img.shields.io/badge/Version-2.5.2~ynh1-rgba(0,150,0,1)?style=for-the-badge)
+[![Version: 2.5.2~ynh1](https://img.shields.io/badge/Version-2.5.2~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/jellyseerr"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
@@ -18,6 +18,8 @@ Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
 </div>
 
 ## 📦 Developer info
+
+[![Automatic tests level](https://apps.yunohost.org/badge/cilevel/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
 
 🛠️ Upstream Jellyseerr repository: <https://github.com/Fallenbagel/jellyseerr>
 
