@@ -23,14 +23,6 @@ ynh_print_info "Adding an API_KEY if not set..."
 
 ynh_app_setting_set_default --app=$app --key="api_key" --value="$(ynh_string_random --length=32)"
 
-
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression "Installing dependencies..."
-
-ynh_nodejs_install
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================

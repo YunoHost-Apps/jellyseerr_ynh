@@ -15,13 +15,6 @@ api_key=$(ynh_string_random --length=32)
 ynh_app_setting_set --app=$app --key="api_key" --value="$api_key"
 
 #=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression "Installing dependencies..."
-
-ynh_nodejs_install
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Setting up source files..."
