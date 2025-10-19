@@ -13,7 +13,7 @@ maintainers = ["Thovi98"]
 
 [upstream]
 license = "MIT"
-code = "https://github.com/Fallenbagel/jellyseerr"
+code = "https://github.com/seerr-team/seerr"
 
 [integration]
 yunohost = ">= 12.1.15"
@@ -42,8 +42,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/Fallenbagel/jellyseerr/archive/refs/tags/v2.7.3.tar.gz"
-    sha256 = "5ace6b8247f4f6dc04fa9224dd42002c26c089943ac12e202f56cfc8e39c8420"
+    url = "https://github.com/seerr-team/seerr/archive/refs/tags/v2.7.3.tar.gz"
+    sha256 = "d0444cecd385452e452954b13b8a0e2b9b299fbef0cecc70c44ad089d8d84b78"
     autoupdate.strategy = "latest_github_tag"
 
 
