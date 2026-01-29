@@ -33,7 +33,6 @@ ynh_backup "/etc/systemd/system/$app.service"
 # Backup the logrotate configuration
 ynh_backup "/etc/logrotate.d/$app"
 
-
 #=================================================
 # END OF SCRIPT
 #=================================================
