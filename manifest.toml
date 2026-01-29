@@ -22,7 +22,6 @@ architectures = "all"
 multi_instance = true
 
 ldap = false
-
 sso = false
 
 disk = "50M"
@@ -66,4 +65,3 @@ ram.runtime = "50M"
 
     [resources.nodejs]
     version = "22"
-
