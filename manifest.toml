@@ -4,8 +4,8 @@ packaging_format = 2
 
 id = "jellyseerr"
 name = "Seerr"
-description.en = "Media request management and discovery tool for Jellyfin, Radarr, and Sonarr"
-description.fr = "Outil de gestion de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
+description.en = "Previously Jellyseerr. Media request management and discovery tool for Jellyfin, Radarr, and Sonarr"
+description.fr = "Anciennement Jellyseerr. Outil de gestion de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
 
 version = "3.0.1~ynh1"
 
