@@ -4,8 +4,8 @@ It shall NOT be edited by hand.
 -->
 
 <h1>
-  <img src="https://raw.githubusercontent.com/YunoHost/apps/main/logos/jellyseerr.png" width="32px" alt="Logo of Jellyseerr">
-  Jellyseerr, packaged for YunoHost
+  <img src="https://raw.githubusercontent.com/YunoHost/apps/main/logos/jellyseerr.png" width="32px" alt="Logo of Seerr">
+  Seerr, packaged for YunoHost
 </h1>
 
 Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
@@ -19,13 +19,13 @@ Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
 
 
 ## Screenshots
-![Screenshot of Jellyseerr](./doc/screenshots/jellyseerr.png)
+![Screenshot of Seerr](./doc/screenshots/jellyseerr.png)
 
 ## 📦 Developer info
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/jellyseerr)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
 
-🛠️ Upstream Jellyseerr repository: <https://github.com/seerr-team/seerr>
+🛠️ Upstream Seerr repository: <https://github.com/seerr-team/seerr>
 
 Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/jellyseerr_ynh/tree/testing).
 
