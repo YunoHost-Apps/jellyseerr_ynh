@@ -10,7 +10,7 @@ It shall NOT be edited by hand.
 
 Previously Jellyseerr. Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
 
-[![Version: 3.0.1~ynh1](https://img.shields.io/badge/Version-3.0.1~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
+[![Version: 3.1.0~ynh1](https://img.shields.io/badge/Version-3.1.0~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/jellyseerr/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/jellyseerr"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>

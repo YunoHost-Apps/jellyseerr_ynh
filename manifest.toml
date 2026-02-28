@@ -7,7 +7,7 @@ name = "Seerr"
 description.en = "Previously Jellyseerr. Media request management and discovery tool for Jellyfin, Radarr, and Sonarr"
 description.fr = "Anciennement Jellyseerr. Outil de gestion de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
 
-version = "3.0.1~ynh1"
+version = "3.1.0~ynh1"
 
 maintainers = ["Thovi98"]
 
@@ -41,8 +41,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/seerr-team/seerr/archive/refs/tags/v3.0.1.tar.gz"
-    sha256 = "c5dd29495a04d73b961c8dc4ba2e3e1dd8f042e34a22ff409e80a4e2e180c18d"
+    url = "https://github.com/seerr-team/seerr/archive/refs/tags/v3.1.0.tar.gz"
+    sha256 = "c19db0c92407f5c6363e7df8ca4e4ccae3f121e2b4f6baa2b4e269b197e2dd82"
     autoupdate.strategy = "latest_github_tag"
 
 
