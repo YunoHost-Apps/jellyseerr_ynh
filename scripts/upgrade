@@ -4,6 +4,7 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
+source ynh_handle_app_migration
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -12,6 +13,25 @@ source /usr/share/yunohost/helpers
 ynh_script_progression "Stopping $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="stop"
+
+#=================================================
+# MIGRATE FROM JELLYSEERR TO SEERR
+#=================================================
+ynh_app_migration_migrate --migration_id="jellyseerr" --migration_list="migration_list"
+
+if [ $migration_process -eq 1 ]
+then
+
+	# If a migration has been perform
+	# Reload some values changed by the migration process
+	install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+
+	ynh_script_progression "Making sure dedicated system user exists..."
+
+	# Create a dedicated user (if not existing)
+	ynh_system_user_create --username=$app --home_dir="$install_dir"
+fi
+
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -76,6 +96,16 @@ pushd $install_dir
 popd
 
 chown -R $app:$app "$install_dir"
+
+#=================================================
+# FINISH MIGRATION PROCESS
+#=================================================
+
+if [ $migration_process -eq 1 ]
+then
+	ynh_app_migration_post_migrate
+fi
+
 
 #=================================================
 # START SYSTEMD SERVICE

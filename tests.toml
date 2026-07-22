@@ -16,3 +16,4 @@ test_format = 1.0
     # Commits to test upgrade from
     # -------------------------------
 
+    test_ugprade_from.d615404b72fcffc9c14b8a25cb6335e5ab8158db.name = "Jellyseerr"
