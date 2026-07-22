@@ -1,0 +1,301 @@
+#!/bin/bash
+
+# This helper has to be used for an app which needs to migrate to a new name or a new fork
+# (like owncloud to nextcloud or zerobin to privatebin).
+#
+# This helper will move the files of an app to its new name
+# or recreate the things it can't move.
+#
+# To specify which files it has to move, you have to create a "migration file", stored in ../conf/migration
+#
+# This file is a simple list of each file it has to move,
+# except that file names must reference the $app variable instead of the real name of the app,
+# and every instance-specific variables (like $domain).
+# $app is especially important because it's this variable which will be used to identify the old place and the new one for each file.
+#
+# If a database exists for this app, it will be dumped and then imported in a newly created database, with a new name and new user.
+# Don't forget you have to then apply these changes to application-specific settings (depends on the packaged application)
+#
+# Same things for an existing user, a new one will be created.
+# But the old one can't be removed unless it's not used. See below.
+#
+# If you have some dependencies for your app, it's possible to change the fake debian package which manages them.
+# You have to fill the $pkg_dependencies variable, and then a new fake package will be created and installed,
+# and the old one will be removed.
+# If you don't have a $pkg_dependencies variable, the helper can't know what the app dependencies are.
+#
+# The app settings.yml will be modified as follows:
+# - install_dir will be changed according to the new name (but only if the existing $install_dir contains the old app name)
+# - The checksums of php-fpm and nginx config files will be updated too.
+# - If there is a $db_name value, it will be changed.
+# - And, of course, the ID will be changed to the new name too.
+#
+# Finally, the $app variable will take the value of the new name.
+# The helper will set the $migration_process variable to 1 if a migration has been successfully handled.
+#
+# You have to handle by yourself all the migrations not done by this helper, like configuration or special values in settings.yml
+#
+# Also, at the end of the upgrade script, you have to add a post_migration script to handle all the things the helper can't do during YunoHost upgrade (mostly for permission reasons),
+# especially remove the old user, move some hooks and remove the old configuration directory
+# To launch this script, you have to move it elsewhere and start it after the upgrade script.
+# `cp ../conf/migration/$app_post_migration /tmp`
+# `(cd /tmp; echo "/tmp/$app_post_migration" | at now + 2 minutes)`
+#
+# usage: ynh_handle_app_migration migration_id migration_list
+# | arg: -i, --migration_id= - ID from which to migrate
+# | arg: -l, --migration_list= - File specifying every file to move (one file per line)
+
+
+
+ynh_app_migration_migrate ()  {
+
+  # Need for end of install
+  _ynh_apt_install at
+
+
+  #=================================================
+  # LOAD SETTINGS
+  #=================================================
+  
+  old_app=$YNH_APP_INSTANCE_NAME
+  old_app_id=$YNH_APP_ID
+  old_app_number=$YNH_APP_INSTANCE_NUMBER
+
+  # Declare an array to define the options of this helper.
+  declare -Ar args_array=( [i]=migration_id= [l]=migration_list= )
+  # Get the id from which to migrate
+  migration_id=""
+  # And the file with the paths to move
+  migration_list=""
+  # Manage arguments with getopts
+  ynh_handle_getopts_args "$@"
+
+  # Get the new app id in the manifest
+  new_app_id=$(cat ../manifest.toml 2>/dev/null | grep '^id = ' | cut -d\" -f2)
+
+  if [ $old_app_number -eq 1 ]; then
+    new_app=$new_app_id
+  else
+    new_app=${new_app_id}__${old_app_number}
+  fi
+
+  #=================================================
+  # CHECK IF IT HAS TO MIGRATE 
+  #=================================================
+
+  migration_process=0
+
+  if [ "$old_app_id" == "$new_app_id" ]
+  then
+    # If the 2 id are the same
+    # No migration to do.
+    echo 0
+    return 0
+  else
+    if [ "$old_app_id" != "$migration_id" ]
+    then
+        # If the new app is not the authorized id, fail.
+        ynh_die "Incompatible application for migration from $old_app_id to $new_app_id"
+    fi
+
+    ynh_print_info "Migrate from $old_app_id to $new_app_id" >&2
+
+    #=================================================
+    # CHECK IF THE MIGRATION CAN BE DONE
+    #=================================================
+
+    # TODO Handle multi instance apps...
+    # Check that there is not already an app installed for this id.
+    (yunohost app list | grep -w "id: $new_app") \
+    && ynh_die "$new_app is already installed"
+
+    ynh_app_setting_set --key=migration_old_app --value="$old_app"
+    ynh_app_setting_set --key=migration_old_app_id --value="$old_app_id"
+    ynh_app_setting_set --key=migration_old_app_number --value="$old_app_number"
+
+    #=================================================
+    # CHECK THE LIST OF FILES TO MOVE
+    #=================================================
+
+    local temp_migration_list="$(mktemp)"
+
+    # Build the list by removing blank lines and comment lines
+    sed '/^#.*\|^$/d' "../conf/migration/$migration_list" > "$temp_migration_list"
+
+    cat "$temp_migration_list"
+
+    # Check if there is no file in the destination
+    local file_to_move=""
+    while read file_to_move
+    do
+        # Replace all occurences of $app by $new_app in each file to move.
+        local move_to_destination="${file_to_move//\$app/$new_app}"
+        test -e "$move_to_destination" && ynh_die "A file named $move_to_destination already exists."
+    done < "$temp_migration_list"
+
+    # =================================================
+    # COPY YUNOHOST SETTINGS FOR THIS APP
+    # =================================================
+
+    local settings_dir="/etc/yunohost/apps"
+    cp -a "$settings_dir/$old_app" "$settings_dir/$new_app"
+
+    for item in scripts conf doc hooks config_panel.toml manifest.toml; do
+    [ -e "../$item" ] || continue
+    cp -a "../$item" "$settings_dir/$new_app"
+    done
+
+    # Replace the old id by the new one
+    ynh_replace --match="\(^id: .*\)$old_app" --replace="\1$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Change the label if it's simply the name of the app
+    old_label=$(ynh_app_setting_get --app=$new_app --key=label)
+    if [ "${old_label,,}" == "$old_app_id" ]
+    then
+        # Build the new label from the id of the app. With the first character as upper case
+        new_label=$(echo $new_app_id | cut -c1 | tr [:lower:] [:upper:])$(echo $new_app_id | cut -c2-)
+        ynh_app_setting_set --app=$new_app --key=label --value=$new_label
+    fi
+
+    #=================================================
+    # MOVE FILES TO THE NEW DESTINATION
+    #=================================================
+
+    while read file_to_move
+    do
+        # Replace all occurence of $app by $new_app in each file to move.
+        move_to_destination="$(eval echo "${file_to_move//\$app/$new_app}")"
+        local real_file_to_move="$(eval echo "${file_to_move//\$app/$old_app}")"
+        ynh_print_info "Move file $real_file_to_move to $move_to_destination" >&2
+        mv "$real_file_to_move" "$move_to_destination"
+    done < "$temp_migration_list"
+
+    #=================================================
+    # UPDATE SETTINGS KNOWN ENTRIES
+    #=================================================
+
+    # Replace nginx checksum
+    ynh_replace --match="\(^checksum__etc_nginx.*\)_$old_app" --replace="\1_$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Replace php-fpm checksums
+    ynh_replace --match="\(^checksum__etc_php.*[-_]\)$old_app" --replace="\1$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Replace install_dir
+    ynh_replace --match="\(^install_dir: .*\)$old_app" --replace="\1$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Replace data_dir
+    ynh_replace --match="\(^data_dir: .*\)$old_app" --replace="\1$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Replace fail2ban_filter
+    ynh_replace --match="\(^checksum__etc_fail2ban_filter.*\)_$old_app" --replace="\1_$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Replace fail2ban_jail
+    ynh_replace --match="\(^checksum__etc_fail2ban_jail.*\)_$old_app" --replace="\1_$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    # Replace systemd
+    ynh_replace --match="\(^checksum__etc_systemd_system.*\)_$old_app" --replace="\1_$new_app" --file="$settings_dir/$new_app/settings.yml"
+
+    #=================================================
+    # MOVE THE MYSQL DATABASE
+    #=================================================
+
+    old_db_name=$(ynh_app_setting_get --app=$old_app --key=db_name)
+    
+    # Check if a database exists before trying to move it
+    if [ -n "$old_db_name" ] && mysqlshow | grep -q "^| $old_db_name"
+    then
+        old_db_user=$old_db_name
+        db_pwd=$(ynh_app_setting_get --app=$old_app --key=mysqlpwd)
+
+        new_db_name=$(ynh_sanitize_dbid --db_name=$new_app)
+        new_db_user=$new_db_name
+        ynh_print_info "Rename the database $db_name to $new_db_name" >&2
+
+        # Dump the old database
+        ynh_mysql_dump_db "$old_db_name" > "./dump.sql"
+
+        # Then restore the old one into the new one
+        ynh_mysql_db_shell $new_db_name < "./dump.sql"
+
+        # And the dump
+        ynh_safe_rm "./dump.sql"
+    fi
+
+    ## TODO: do the same for postgresql
+
+    #=================================================
+    # REMOVE OLD APP SERVICE
+    #=================================================
+
+    # Remove the service from the list of services known by YunoHost (added from `yunohost service add`)
+	  if ynh_hide_warnings yunohost service status $old_app >/dev/null
+	  then
+		  ynh_script_progression "Removing $old_app service integration..."
+		  yunohost service remove $old_app
+	  fi
+
+    #=================================================
+    # CHANGE THE FAKE DEPENDENCIES PACKAGE
+    #=================================================
+
+    # Check if a variable $pkg_dependencies exists
+    # If this variable doesn't exist, this part shall be managed in the upgrade script.
+    #if [ -n "${pkg_dependencies:-}" ]
+    #then
+      # Define the name of the package
+    #  local old_package_name="${old_app//_/-}-ynh-deps"
+    #  local new_package_name="${new_app//_/-}-ynh-deps"
+
+#      if ynh_package_is_installed --package="$old_package_name"
+#      then
+#        # Install a new fake package
+##        app=$new_app
+ #       ynh_install_app_dependencies $pkg_dependencies
+ #       # Then remove the old one
+ #       app=$old_app
+ #       ynh_remove_app_dependencies
+ #$     fi
+# fi
+
+    #=================================================
+    # UPDATE THE ID OF THE APP
+    #=================================================
+
+    app=$new_app
+
+    # Set migration_process to 1 to inform that an upgrade has been made
+    migration_process=1
+  fi
+}
+
+ynh_app_migration_post_migrate() {
+
+  old_app=$(ynh_app_setting_get --key=migration_old_app)
+  old_app_id=$(ynh_app_setting_get --key=migration_old_app_id)
+  old_app_number=$(ynh_app_setting_get --key=migration_old_app_number)
+
+  new_app=$YNH_APP_INSTANCE_NAME
+  new_app_id=$YNH_APP_ID
+
+  #=================================================
+  # FINISH MIGRATION PROCESS
+  #=================================================
+
+    ynh_print_warn "$old_app has been successfully migrated to $new_app! \
+  A last scheduled operation will run in a couple of minutes to finish the \
+  migration in YunoHost side. Do not proceed any application operation while \
+  you don't see $new_app as installed. \
+  You may still see $old_app in the webadmin in the meantime (up to 5 minutes)"
+
+    post_migration=post_migration.sh
+    cp ../conf/migration/$post_migration /tmp
+    ynh_replace --match="__OLD_APP__" --replace="$old_app" --file=/tmp/$post_migration
+    ynh_replace --match="__NEW_APP__" --replace="$app" --file=/tmp/$post_migration
+    chmod +x /tmp/$post_migration
+    (cd /tmp; echo "/tmp/$post_migration > /tmp/$post_migration.log 2>&1" | at now + 2 minutes)
+
+
+  ynh_app_setting_delete --key=migration_old_app
+  ynh_app_setting_delete --key=migration_old_app_id
+  ynh_app_setting_delete --key=migration_old_app_number
+}
