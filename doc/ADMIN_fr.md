@@ -1,3 +1,3 @@
-Connectez-vous avec vos coordonnées identifiants.
+Connectez-vous avec vos identifiants Jellyfin.
 
 Le premier utilisateur connecté sera l’administrateur. Il déterminera l’instance Jellyfin liée.
