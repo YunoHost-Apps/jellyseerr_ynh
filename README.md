@@ -8,7 +8,7 @@ It shall NOT be edited by hand.
   Seerr, packaged for YunoHost
 </h1>
 
-Previously Jellyseerr. Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
+Media request management and discovery tool for Jellyfin, Radarr, and Sonarr
 
 [![Version: 3.3.0~ynh2](https://img.shields.io/badge/Version-3.3.0~ynh2-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/seerr/)
 
