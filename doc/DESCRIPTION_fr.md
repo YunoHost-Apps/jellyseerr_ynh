@@ -1,1 +1,1 @@
-Jellyseerr est une application libre et open source pour gérer les requêtes pour votre médiathèque. C’est un fork de Overseerr, créé pour ajouter le support des serveurs Jellyfin et Emby !
+Seerr est une application libre et open source pour gérer les requêtes pour votre médiathèque. Il s'intègre avec le serveur multimédia de votre choix : Jellyfin, Plex et Emby. Par ailleurs, il s'intègre avec vos services existants, tels que Sonarr et Radarr.
