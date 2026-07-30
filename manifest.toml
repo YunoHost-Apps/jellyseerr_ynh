@@ -5,7 +5,7 @@ packaging_format = 2
 id = "seerr"
 name = "Seerr"
 description.en = "Media request management and discovery tool for Jellyfin, Radarr, and Sonarr"
-description.fr = "Outil de gestion de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
+description.fr = "Gestionnaire de demandes et de découverte de médias pour Jellyfin, Radarr, et Sonarr"
 
 version = "3.4.0~ynh1"
 
@@ -16,7 +16,7 @@ license = "MIT"
 code = "https://github.com/seerr-team/seerr"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.40"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -44,7 +44,6 @@ ram.runtime = "50M"
     url = "https://github.com/seerr-team/seerr/archive/refs/tags/v3.4.0.tar.gz"
     sha256 = "74971d8a1284bd35c277547a38b916f7879f3e9d76f0ff2c7550e295653fe38d"
     autoupdate.strategy = "latest_github_tag"
-
 
     [resources.system_user]
 
